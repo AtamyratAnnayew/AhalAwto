@@ -1,10 +1,11 @@
-
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useState,  createContext} from 'react';
+import { useState,  createContext, useEffect} from 'react';
+import ReactModal from 'react-modal';
 import BizBarada from './Components/BizBarada';
 import BasSahypa from './Components/BasSahypa';
 import logo from './Components/Images/Logo.svg'
@@ -15,10 +16,10 @@ import Kadalasdyryjy from './Components/Kadalasdyryjy';
 import Gatnawlar from './Components/Gatnawlar';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './i18n'; // Import the i18n configuration
 import { useTranslation } from 'react-i18next';
 import Habarlar from './Components/Habarlar';
+import Kaka from './Components/Kaka'
 import Baherden from './Components/Baherden';
 import Sargytlar from './Components/Sargytlar';
 import SargytlarTwo from './Components/SargytlarTwo';
@@ -27,6 +28,8 @@ import AwtobusFiziki from './Components/AwtobusFiziki';
 import YukUlagyYuridiki from './Components/YukUlagyYuridiki';
 import AwtobusYuridiki from './Components/AwtobusYuridiki';
 import YukUlagyFiziki from './Components/YukUlagyFiziki';
+import Hyzmatlarymyz from './Components/Hyzmatlarymyz';
+import Modalnaya from './Components/Modalnaya';
 
 
 export const SelectionContext = createContext();
@@ -42,10 +45,32 @@ function App() {
     setIsOpen(!isOpen); // Toggle open/closed state on click
   };
 
+  //-------------------Active menu items-----------------------------
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handleMenuItemClick = (index) => {
+    if (index !== 3) { // Prevent changing the active item when "Karhanalarymyz" is clicked
+      setActiveIndex(index);
+    }
+    setIsOpen(false); // Close dropdown if any other item is clicked
+  };
+  // ------------------------------------
+
+  // useEffect(() => {
+  //   const savedIndex = localStorage.getItem("activeMenuIndex");
+  //   if (savedIndex) {
+  //     setActiveIndex(parseInt(savedIndex, 10)); // Convert to integer
+  //   }
+  // }, []);
+
+  // const handleMenuItemClick1 = (index) => {
+  //   setActiveIndex(index);
+  //   localStorage.setItem("activeMenuIndex", index); // Save to localStorage
+  // };
+
   // ---------------------Drop Down menu's components-------
 
   const dropdownItems = [ // Replace with your actual dropdown content
-    { name: 'Kaka', path: '/kaka' },
+    { name: 'Kaka', path: '/kaka', component: Kaka },
     { name: 'Baherden', path: '/baherden', component: Baherden },
     // ... other dropdown items
   ];
@@ -63,6 +88,11 @@ function App() {
 
 
   const [selection, setSelection] = useState({ sargytlarTwo: '', sargytlarThree: '' });
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const openModal = () => setIsOpenModal(true);
+  const closeModal = () => setIsOpenModal(false);
   
   return (
     <>
@@ -79,7 +109,7 @@ function App() {
               </div>
               
               <div className='flex flex-row gap-3'>
-                <div className='contactUs flex flex-row items-center gap-2 cursor-pointer'>
+                <div onClick={openModal} className='contactUs flex flex-row items-center gap-2 cursor-pointer'>
                   <img src={contactUs}/>
                   <span>{t('description')}</span>
                 </div>
@@ -99,25 +129,47 @@ function App() {
           <Router>
           <div className='secondChild flex gap-10 flex-col pt-5'>
             <nav className='bg-[#E7E7E7] flex items-center justify-center h-[45px]'>
-              <ul className='flex flex-row gap-5 text-lg'>
+              <ul className='flex flex-row gap-5 text-lg items-center'>
                 <li>
-                  <Link to='/'>Bas sahypa</Link>
+                  <Link to='/'
+                  onClick={() => handleMenuItemClick(0)}
+                  className={`px-3 py-2 ${activeIndex === 0 ? 'list-disc text-green-500' : 'text-black'}`}
+               
+                  >
+                    Bas sahypa</Link>
                 </li>
                 <li>
-                  <Link to='/bizBarada'>Biz barada</Link>
+                  <Link to='/bizBarada'
+                   onClick={() => handleMenuItemClick(1)}
+                   className={`px-3 py-2 ${activeIndex === 1 ? 'text-green-500' : 'text-black'}`}
+                 
+                  >
+                    Biz barada</Link>
                 </li>
                 <li>
-                  <Link to='/'>Hyzmatlarymyz</Link>
+                  <Link to='/hyzmatlarymyz'
+                  onClick={() => handleMenuItemClick(2)}
+                  className={`px-3 py-2 ${activeIndex === 2 ? 'text-green-500' : 'text-black'}`}
+                
+                  >
+                    Hyzmatlarymyz</Link>
                 </li>
                 <li className='relative'>
                   <span className='flex flex-row gap-1' onClick={toggleDropdown}>
-                    <Link to='/'>Karhanalarymyz </Link>
-                    <img src={arrowIcon} className={`transform transition-transform cursor-pointer ${isOpen ? 'rotate-0' : 'rotate-180'}`}/>
-                  </span> {isOpen && (
-                    <ul className='bg-[#ffff]  absolute'>
+                    <Link to="#"
+                      className={`px-3 py-2 ${isOpen ? 'text-green-500' : 'text-black'}`}
+                    >
+                      Karhanalarymyz </Link>
+                    <img src={arrowIcon} 
+                        className={`transform transition-transform cursor-pointer ${isOpen ? 'rotate-0' : 'rotate-180'}`}/>
+                  </span> 
+                  {isOpen && (
+                    <ul className='bg-[#ffff]  absolute top-11 w-36 z-10'>
                       {dropdownItems.map((item, index) => (
                         <li key={index} className="px-3 py-2 hover:bg-[#E7E7E7]">
-                        <Link to={item.path} className="text-base block">
+                        <Link to={item.path} 
+                          className="text-base block">
+                            onClick={() => handleMenuItemClick(3)}
                         {item.name}
                        </Link>
                        </li>
@@ -125,22 +177,44 @@ function App() {
                     </ul>)}
                 </li>
                 <li>
-                  <Link to='/kadalasdyryjy'>Kadalasdyryjy hukuknamalar</Link>
+                  <Link to='/kadalasdyryjy'
+                   onClick={() => handleMenuItemClick(4)}
+                   className={`px-3 py-2 ${activeIndex === 4 ? 'text-green-500' : 'text-black'}`}         
+                  >
+                    Kadalasdyryjy hukuknamalar
+                  </Link>
                 </li>
                 <li>
-                  <Link to='/habarlar'>Habarlar</Link>
+                  <Link to='/habarlar'
+                  onClick={() => handleMenuItemClick(5)}
+                  className={`px-3 py-2 ${activeIndex === 5 ? 'text-green-500' : 'text-black'}`}
+                >
+                  Habarlar
+                </Link>
                 </li>
                 <li>
-                  <Link to='/gatnawlar'>Gatnawlar</Link>
+                  <Link to='/gatnawlar'
+                  onClick={() => handleMenuItemClick(6)}
+                  className={`px-3 py-2 ${activeIndex === 6 ? 'text-green-500' : 'text-black'}`}        
+                  >
+                    Gatnawlar</Link>
                 </li>
                 <li>
-                  <Link to='/sargytlar'>Sargytlar</Link>
+                  <Link to='/sargytlar'
+                  onClick={() => handleMenuItemClick(7)}
+                  className={`px-3 py-2 ${activeIndex === 7 ? 'text-green-500' : 'text-black'}`}
+                >
+                  Sargytlar</Link>
                 </li>
               </ul>
             </nav>
             <Routes>
-              <Route path="/bizBarada" element={<BizBarada/>} />
               <Route path="/" element={<BasSahypa/>} />
+              <Route path="/bizBarada" element={<BizBarada/>} />
+              <Route path="/Hyzmatlarymyz" element={<Hyzmatlarymyz/>} />
+              {dropdownItems.map((item, index) => (
+              <Route key={index} path={item.path} element={<item.component />} />
+              ))}
               <Route path="/kadalasdyryjy" element={<Kadalasdyryjy/>} />
               <Route path="/gatnawlar" element={<Gatnawlar/>} />
               <Route path="/habarlar" element={<Habarlar/>} />
@@ -152,15 +226,13 @@ function App() {
               <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/AwtobusYuridiki" exact element={<AwtobusYuridiki/> } />
               <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/YukUlagyFiziki" exact element={<YukUlagyFiziki/>}/>
 
-              {dropdownItems.map((item, index) => (
-                <Route key={index} path={item.path} component={item.component} />
-              ))}
+             
             </Routes>
           </div>
           </Router>
           </SelectionContext.Provider>
           
-          <div className='thirdChild border-t-2 border-[#E7E7E7] gap-2'>
+          <div className='thirdChild border-t-2 border-[#E7E7E7] gap-2 mt-10'>
             <div className='mainContainer px-10 py-5 flex flex-row justify-between items-center'>
               <div className='flex flex-row gap-3'>
                 <img src={footerBaner}/>
@@ -200,6 +272,7 @@ function App() {
             </footer>
           </div>
         </div>
+        <Modalnaya isOpenModal={isOpenModal} closeModal={closeModal}/>
       </div>
     </>
   );

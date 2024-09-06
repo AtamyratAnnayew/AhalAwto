@@ -2,7 +2,7 @@
   "name": "parking",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/AtamyratAnnayew/AhalAwto.git",
+  "homepage": "https://AtamyratAnnayew.github.io/AhalAwto",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -10,8 +10,10 @@
     "gh-pages": "^6.1.1",
     "i18next": "^23.12.2",
     "react": "^18.3.1",
+    "react-cookie": "^7.2.0",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
@@ -22,8 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-    
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +48,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
+    "gh-pages": "^3.1.0",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.6"
   }

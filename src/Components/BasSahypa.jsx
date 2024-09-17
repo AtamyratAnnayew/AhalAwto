@@ -14,7 +14,9 @@ import leftArrow from './Images/left-arrow-icon.svg'
 import rightArrow from './Images/right-arrow-icon.svg'
 // import baner from './Images/biz-barada.svg'
 import icon from './Images/doly-okamak-arrow.svg'
-// import BasSahypaYzy from './BasSahypaYzy'
+import BasSahypaYzy from './BasSahypaYzy';
+import BasSahypaHabarlar from './BasSahypaHabarlar';
+import TaksiHyzmaty from './TaksiHyzmaty';
 
 
 export default function BasSahypa() {
@@ -112,45 +114,45 @@ export default function BasSahypa() {
           </div>
         </div>
 
-        <div className='service-container w-full h-44 '>
+        <div className='service-container w-full h-44 mt-5 px-3'>
           <div className='h-16 flex items-center'>
-            <p className='text-2xl bold'>Hyzmatlarymyz</p>
+            <p className='text-3xl font-bold'>Hyzmatlarymyz</p>
           </div>
 
-          <div className='flex gap-5'>
+          <div className='flex gap-5 px-4'>
 
-            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg px-5 flex flex-col items-start justify-center  cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
+            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg gap-2 px-5 flex flex-col items-start justify-center  cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
               <div>
-                <img src={firstServiceIcon}/>
+                <img className='fill-current text-blue-500' src={firstServiceIcon}/>
               </div>
-              <div className=''>
+              <div className='font-bold text-2xl'>
                 Baý tejribe
               </div>
             </div>
 
-            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg px-5 flex flex-col items-start justify-center cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
+            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg gap-2 px-5 flex flex-col items-start justify-center cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
               <div>
                 <img src={secondServiceIcon} className='fill-black'/>
               </div>
-              <div className=''>
+              <div className='font-bold text-2xl'>
                 Ygtybarly hyzmatdaş
               </div>
             </div>
 
-            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg px-5 flex flex-col items-start justify-center cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
+            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg gap-2 px-5 flex flex-col items-start justify-center cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
               <div>
                 <img src={thirdServiceIcon}/>
               </div>
-              <div>
+              <div className='font-bold text-2xl'>
                 Çalt we amatly
               </div>
             </div>
 
-            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg px-5 flex flex-col items-start justify-center cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
+            <div className='bg-[#EEEEEE] w-[23.8%] h-24 rounded-lg gap-2 px-5 flex flex-col items-start justify-center cursor-pointer hover:bg-[#059B36] transition delay-200 duration-300 ease-in-out text-black hover:text-white'>
               <div>
                 <img src={fourthServiceIcon}/>
               </div>
-              <div>
+              <div className='font-bold text-2xl'>
                 Işine ökde sürijiler
               </div>
           </div>
@@ -158,6 +160,9 @@ export default function BasSahypa() {
         
 
       </div> 
+      <BasSahypaYzy/>
+      <BasSahypaHabarlar/>
+      <TaksiHyzmaty/>
     </div>
     </>
   )

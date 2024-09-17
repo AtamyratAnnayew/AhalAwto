@@ -8,9 +8,11 @@ import { useState,  createContext, useEffect} from 'react';
 import ReactModal from 'react-modal';
 import BizBarada from './Components/BizBarada';
 import BasSahypa from './Components/BasSahypa';
+import DolyOkamak from './Components/Images/doly-okamak-arrow.svg'
 import logo from './Components/Images/Logo.svg'
 import contactUs from './Components/Images/habarlasmak.svg'
 import arrowIcon from './Components/Images/top-icon.svg'
+import bizBaradaImg from "./Components/Images/biz-barada.svg"
 import footerBaner from './Components/Images/baner-logo.svg'
 import Kadalasdyryjy from './Components/Kadalasdyryjy';
 import Gatnawlar from './Components/Gatnawlar';
@@ -30,6 +32,7 @@ import AwtobusYuridiki from './Components/AwtobusYuridiki';
 import YukUlagyFiziki from './Components/YukUlagyFiziki';
 import Hyzmatlarymyz from './Components/Hyzmatlarymyz';
 import Modalnaya from './Components/Modalnaya';
+import MasynSargytlar from './Components/MasynSargytlar';
 
 
 export const SelectionContext = createContext();
@@ -88,6 +91,8 @@ function App() {
 
 
   const [selection, setSelection] = useState({ sargytlarTwo: '', sargytlarThree: '' });
+
+  // =====================================================Drop down menu =================
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -155,7 +160,7 @@ function App() {
                     Hyzmatlarymyz</Link>
                 </li>
                 <li className='relative'>
-                  <span className='flex flex-row gap-1' onClick={toggleDropdown}>
+                  <span className='flex flex-row' onClick={toggleDropdown}>
                     <Link to="#"
                       className={`px-3 py-2 ${isOpen ? 'text-green-500' : 'text-black'}`}
                     >
@@ -169,7 +174,7 @@ function App() {
                         <li key={index} className="px-3 py-2 hover:bg-[#E7E7E7]">
                         <Link to={item.path} 
                           className="text-base block">
-                            onClick={() => handleMenuItemClick(3)}
+                            {() => handleMenuItemClick(3)}
                         {item.name}
                        </Link>
                        </li>
@@ -221,11 +226,11 @@ function App() {
               <Route path="/Sargytlar" element={<Sargytlar/>}/>
               <Route path="/Sargytlar/SargytlarTwo" exact element={<SargytlarTwo/>}/>
               <Route path="/Sargytlar/SargytlarTwo/SargytlarThree" exact element={<SargytlarThree/>} />
-              <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/AwtobusFiziki" exact element={<AwtobusFiziki/>} />
+              <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/MasynSargytlar" exact element={<MasynSargytlar/>} />
+              <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/MasynSargytlar/AwtobusFiziki" exact element={<AwtobusFiziki/>} />
               <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/YukUlagyYuridiki" exact element={<YukUlagyYuridiki/>} />
               <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/AwtobusYuridiki" exact element={<AwtobusYuridiki/> } />
               <Route path="/Sargytlar/SargytlarTwo/SargytlarThree/YukUlagyFiziki" exact element={<YukUlagyFiziki/>}/>
-
              
             </Routes>
           </div>

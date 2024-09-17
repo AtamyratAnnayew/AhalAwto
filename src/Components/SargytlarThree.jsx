@@ -24,7 +24,7 @@ export default function SargytlarThree() {
   const handleNext = () => {
     const { sargytlarTwo, sargytlarThree } = selection;
     if (sargytlarTwo === 'Awtobus' && sargytlarThree === 'FizikiSahs') {
-      navigate('/Sargytlar/SargytlarTwo/SargytlarThree/AwtobusFiziki');
+      navigate('/Sargytlar/SargytlarTwo/SargytlarThree/MasynSargytlar');
     } 
     else if (sargytlarTwo === 'YukUlagy' && sargytlarThree === 'YuridikiSahs') {
       navigate('/Sargytlar/SargytlarTwo/SargytlarThree/YukUlagyYuridiki');

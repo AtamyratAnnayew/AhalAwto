@@ -11,9 +11,8 @@ export default function AwtobusFiziki() {
         <div className="mainContainer px-10 ">
           <div>
 
-          <div className="returnBack flex flex-row gap-3 items-center cursor-pointer">
-            <img src={leftArrow} />
-            <span className='text-xl'>Yza gecmek</span>
+          <div className="Sargyt">
+            <h1 className='text-4xl font-bold'>Sargyt</h1>
           </div>
 
           <div className="bodyContainer pt-5 flex flex-col gap-6">
@@ -83,11 +82,12 @@ export default function AwtobusFiziki() {
               </textarea>
             </div>
           </div>
+          <div className="nextBtn flex justify-end">
+            <div className="mt-5 flex items-center justify-center flex-row gap-2 bg-[#059B36] rounded-lg w-[120px] h-[44px] cursor-pointer">
+              <span>Ugratmak</span>
+              <img src={ugratmakIcon} />
+            </div>
           </div>
-
-          <div className="nextBtn mt-5 flex items-center justify-center flex-row gap-2 bg-[#059B36] rounded-lg w-[120px] h-[44px]">
-            <span>Ugratmak</span>
-            <img src={ugratmakIcon} />
           </div>
         </div>
       </div>
